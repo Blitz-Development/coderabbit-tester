@@ -1,0 +1,97 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: en-US
+tone_instructions: "Be concise and balanced. Provide positive feedback for good architectural decisions and clean code practices, not just critical issues."
+early_access: false
+enable_free_tier: true
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  high_level_summary_placeholder: '@coderabbitai summary'
+  auto_title_placeholder: '@coderabbitai'
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  path_filters:
+    - "src/**"
+  path_instructions:
+    - path: "src/main/java/**"
+      instructions: |
+        Provide balanced feedback that includes positive reinforcement for good practices:
+        
+        • Layer separation and encapsulation
+          - When entities are only accessible to service and repository layers (not controllers), 
+            acknowledge this as good practice. Controllers should work with DTOs, not entities directly.
+            This maintains proper separation of concerns and prevents exposing internal data structures.
+        
+        • Clean architecture
+          - Comment positively when you see proper layering: controller → service → repository
+          - Appreciate when DTOs are used to transfer data between layers instead of exposing entities
+        
+        • Encapsulation
+          - Acknowledge when fields are properly encapsulated (private with getters/setters)
+          - Recognize when constructors properly validate input parameters
+        
+        • Code organization
+          - Praise clear package structure and logical class organization
+          - Appreciate meaningful naming conventions and single-responsibility classes
+        
+        • Best practices
+          - Recognize proper use of Spring annotations (@Service, @Repository, @Controller)
+          - Appreciate proper exception handling and validation
+          - Acknowledge good use of dependency injection
+        
+        Always provide constructive feedback: highlight what's done well alongside any issues found.
+
+auto_review:
+  enabled: true
+  auto_incremental_review: true
+  ignore_title_keywords: ["wip", "draft"]
+  labels: []
+  drafts: false
+  base_branches: []
+
+pre_merge_checks:
+  title:
+    mode: warning
+    requirements: "Title should be concise and descriptive"
+  description:
+    mode: warning
+  issue_assessment:
+    mode: warning
+  custom_checks: []
+
+tools:
+  github-checks:
+    enabled: true
+    timeout_ms: 90000
+  markdownlint:
+    enabled: true
+  yamllint:
+    enabled: true
+  gitleaks:
+    enabled: true
+  pmd:
+    enabled: true
+  semgrep:
+    enabled: true
+
+chat:
+  auto_reply: true
+
+knowledge_base:
+  opt_out: false
+  web_search:
+    enabled: true
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "**/.cursorrules"
+      - "**/CODING_STANDARDS.md"
+
+code_generation:
+  docstrings:
+    language: en-US
+  unit_tests:
+    path_instructions: []
