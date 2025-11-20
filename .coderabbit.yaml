@@ -13,6 +13,14 @@ reviews:
   poem: false
   review_status: true
   collapse_walkthrough: false
+  tone: "neutral and constructive"
+  style:
+    - "Always identify at least one thing the code does well (clarity, readability, naming, structure)."
+    - "For each positive point, offer one alternative approach the author could consider — without implying the original is wrong."
+    - "Avoid evaluative or negative language such as 'bad', 'wrong', 'incorrect'."
+    - "Use exploratory language: 'Another option might be...', 'You could also consider...', 'A different angle would be...'"
+    - "Add short reflective questions to encourage understanding of AI-generated code (e.g., 'In which situations would this alternative be more suitable?')."
+    - "Do not rewrite large blocks of code unless absolutely necessary."
   path_filters:
     - "src/**"
   path_instructions:
