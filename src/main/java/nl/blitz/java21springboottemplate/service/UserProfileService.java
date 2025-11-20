@@ -1,6 +1,7 @@
 package nl.blitz.java21springboottemplate.service;
 
 import nl.blitz.java21springboottemplate.dto.CreateUserProfileDto;
+import nl.blitz.java21springboottemplate.dto.UpdateUserProfileDto;
 import nl.blitz.java21springboottemplate.dto.UserProfileDto;
 import nl.blitz.java21springboottemplate.entity.UserProfile;
 import nl.blitz.java21springboottemplate.repository.UserProfileRepository;
@@ -54,6 +55,15 @@ public class UserProfileService {
     }
 
     public Optional<UserProfileDto> update(UUID id, CreateUserProfileDto dto) {
+        return repository.findById(id)
+            .map(entity -> {
+                mapper.updateEntity(entity, dto);
+                final UserProfile updated = repository.save(entity);
+                return mapper.toDto(updated);
+            });
+    }
+
+    public Optional<UserProfileDto> update(UUID id, UpdateUserProfileDto dto) {
         return repository.findById(id)
             .map(entity -> {
                 mapper.updateEntity(entity, dto);

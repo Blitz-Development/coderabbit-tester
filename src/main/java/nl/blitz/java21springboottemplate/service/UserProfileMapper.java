@@ -1,6 +1,7 @@
 package nl.blitz.java21springboottemplate.service;
 
 import nl.blitz.java21springboottemplate.dto.CreateUserProfileDto;
+import nl.blitz.java21springboottemplate.dto.UpdateUserProfileDto;
 import nl.blitz.java21springboottemplate.dto.UserProfileDto;
 import nl.blitz.java21springboottemplate.entity.UserProfile;
 import org.springframework.stereotype.Component;
@@ -32,6 +33,17 @@ public class UserProfileMapper {
         if (entity != null && dto != null) {
             entity.setEmail(dto.getEmail());
             entity.setDisplayName(dto.getDisplayName());
+        }
+    }
+
+    public void updateEntity(UserProfile entity, UpdateUserProfileDto dto) {
+        if (entity != null && dto != null) {
+            if (dto.getEmail() != null) {
+                entity.setEmail(dto.getEmail());
+            }
+            if (dto.getDisplayName() != null) {
+                entity.setDisplayName(dto.getDisplayName());
+            }
         }
     }
 }
